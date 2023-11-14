@@ -1,4 +1,4 @@
-# CTF Slide Deck from 10/6/2023
+# CTF Slide Deck from 10/6/2023 presented by @BrandonBui
 
 This tutorial covered...
 - Who are the GrayHats and what do we do?
