@@ -1,0 +1,45 @@
+//Question 1 Try it for yourself! Do a take 10 on all the other tables to see what kind of data they contain.
+done
+
+//Question 2 How many employees are in the company?
+Employees
+| count
+
+
+// Question 3 Each employee at Krusty Krab is assigned an IP address. Which employee has the IP address: “192.168.1.191”?
+OutboundNetworkEvents
+| where src_ip =="192.168.1.191"
+| union Employees
+| where ip_addr has "192.168.1.191"
+
+// Question 4 How many emails did Hector Duncan receive?
+Email
+//| take 10 
+| where recipient has "hector_duncan"
+
+// Question 5 How many distinct senders were seen in the email logs from bikini-bottom-fish.com?
+Email
+| where sender contains "bikini-bottom-fish.com"
+| distinct sender
+
+//Question 6 How many unique websites did “Christopher Lynch” visit?
+let chrisip =
+OutboundNetworkEvents
+| union Employees
+| where name contains "Christopher";
+| where ip_addr in (chrisip)
+//| union PassiveDns
+//| where ip == "192.168.1.159" 
+
+OutboundNetworkEvents
+|where src_ip == "192.168.1.159"
+| where url startswith "http"
+| distinct url
+
+//Question 7 How many domains in the PassiveDns records contain the word “scary"?
+PassiveDns
+| where domain contains "scary"
+| distinct domain
+| count 
+
+// Question 8 What IP did the domain “scarynight.com” resolve to?
